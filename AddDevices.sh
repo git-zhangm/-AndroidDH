@@ -5,7 +5,7 @@
 DEV_PCI_PATH=${1}
 
 LOG_PATH=`cd $(dirname $0); pwd -P`/add_log.txt
-DEVICE_FILE_PATH=`cd $(dirname $0); pwd -P`
+DEVICE_FILE_PATH=`cd $(dirname $0); pwd -P`/devices
 IMAGE=sorccu/adb
 
 PRODUCT=`udevadm info --attribute-walk -p $DEV_PCI_PATH | grep ATTR{product} | cut -d '"' -f 2`
@@ -60,6 +60,7 @@ then
 			CONTAINER_ID=`docker inspect --format='{{.ID}}' $CONTAINER_NAME`
 			echo [`date "+%Y-%m-%d_%T"`]' 容器ID-->'$CONTAINER_ID >> $LOG_PATH
 			printf "CONTAINER_NAME=$CONTAINER_NAME\nCONTAINER_ID=$CONTAINER_ID" >> $DEVICE_FILE_NAME
+			echo [`date "+%Y-%m-%d_%T"`]' --SUCCESSFUL-->' >> $LOG_PATH
 		else
 			echo [`date "+%Y-%m-%d_%T"`]'[error] 容器已存在-->'$CONTAINER_NAME >> $LOG_PATH
 			exit 1
