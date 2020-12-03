@@ -1,9 +1,6 @@
 
-#ACTION=="add", SUBSYSTEM=="usb",RUN+="/home/ubuntu/AddDevices.sh %p"
 ACTION=="add", SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",RUN+="/home/ubuntu/AddDevices.sh %p"
 
-
-#ACTION=="remove", SUBSYSTEM=="usb", RUN+="/home/ubuntu/RemoveDevices.sh %p"
 #ACTION=="remove", SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",RUN+="/home/ubuntu/RemoveDevices.sh %p"
 ACTION=="remove", SUBSYSTEM=="usb",ENV{DEVTYPE}=="usb_device",RUN+="/home/ubuntu/RemoveDevices.sh %p %E{DEVNAME}"
 
